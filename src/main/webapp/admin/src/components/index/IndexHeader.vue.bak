@@ -1,0 +1,89 @@
+<template>
+	<el-header>
+		<el-menu background-color="#00c292" text-color="#FFFFFF" active-text-color="#FFFFFF" mode="horizontal">
+			<div class="fl title">{{this.$project.projectName}}</div>
+			<div class="fr logout" style="display:flex;">
+				<el-menu-item index="3">
+					<div>{{this.$storage.get('role')}} {{this.$storage.get('adminName')}}</div>
+				</el-menu-item>
+				<el-menu-item @click="onLogout" index="2">
+					<div>退出登录</div>
+				</el-menu-item>
+			</div>
+		</el-menu>
+	</el-header>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				dialogVisible: false,
+				ruleForm: {},
+				user: {}
+			};
+		},
+		mounted() {
+			this.$http({
+				url: `${this.$storage.get("sessionTable")}/session`,
+				method: "get"
+			}).then(({
+				data
+			}) => {
+				if (data && data.code === 0) {
+					this.user = data.data;
+				} else {
+					this.$message.error(data.msg);
+				}
+			});
+		},
+		methods: {
+			onLogout() {
+				this.$storage.remove("Token");
+				this.$router.replace({
+					name: "login"
+				});
+			}
+		}
+	};
+</script>
+
+
+<style lang="scss" scoped>
+	.el-header .fr {
+		float: right;
+	}
+
+	.el-header .fl {
+		float: left;
+	}
+
+	.el-header {
+		width: 100%;
+		color: #333;
+		text-align: center;
+		line-height: 60px;
+		padding: 0;
+		z-index: 99;
+	}
+
+	.logo {
+		width: 60px;
+		height: 60px;
+		margin-left: 70px;
+	}
+
+	.avator {
+		width: 40px;
+		height: 40px;
+		background: #ffffff;
+		border-radius: 50%;
+	}
+
+	.title {
+		color: #ffffff;
+		font-size: 20px;
+		font-weight: bold;
+		margin-left: 20px;
+	}
+</style>

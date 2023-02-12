@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.AddressDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.AddressEntity" id="addressMap">
+        <result property="userid" column="userid"/>
+        <result property="address" column="address"/>
+        <result property="name" column="name"/>
+        <result property="phone" column="phone"/>
+        <result property="isdefault" column="isdefault"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.AddressVO" >
+		SELECT * FROM address  address         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.AddressVO" >
+		SELECT  address.* FROM address  address
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.AddressView" >
+
+		SELECT  address.* FROM address  address 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.AddressView" >
+		SELECT * FROM address  address <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	
+</mapper>

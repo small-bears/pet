@@ -1,0 +1,330 @@
+<template>
+  <div class="main-content">
+    <!-- 列表页 -->
+    <div v-if="!showFlag">
+      <el-form :inline="true" :model="searchForm" class="form-content">
+        #foreach($column in $columns)
+            #if($column.queryFlag == "是")
+                 <el-form-item label="${column.comments}">
+                    #if($column.type == "日")
+                        <el-date-picker
+                            v-model="searchForm.${column.columnName}" 
+                            type="date"
+                            placeholder="${column.comments}">
+                        </el-date-picker>
+                    #elseif( $column.type == "下" )
+                        <el-select v-model="searchForm.${column.columnName}" placeholder="请选择${column.comments}">
+                            #set($array = ${column.customize.split(",")})
+                            #foreach($item in $array)
+                                <el-option
+                                    :key="${item}"
+                                    :label="${item}"
+                                    :value="${item}">
+                                </el-option>
+                            #end
+                        </el-select>
+                    #else
+                        <el-input v-model="searchForm.${column.columnName}" 
+                            placeholder="${column.comments}" clearable></el-input>
+                    #end
+                </el-form-item>
+            #end
+        #end
+        <el-form-item>
+          <el-button round @click="search()">查询</el-button>
+          <el-button
+            v-if="isAuth('${tableName}','新增')"
+            type="primary"
+            @click="addOrUpdateHandler()"
+            round
+          >新增</el-button>
+          <el-button
+            v-if="isAuth('${tableName}','删除')"
+            :disabled="dataListSelections.length <= 0"
+            type="danger"
+            @click="deleteHandler()"
+            round
+          >删除</el-button>
+        </el-form-item>
+      </el-form>
+      <div class="table-content">
+        <el-table
+            v-if="isAuth('${tableName}','查看')"
+            :data="dataList"
+            border
+            v-loading="dataListLoading"
+            @selection-change="selectionChangeHandler"
+            style="width: 100%;">
+            <el-table-column
+                type="selection"
+                header-align="center"
+                align="center"
+                width="50">
+            </el-table-column>
+            #foreach($column in $columns)
+                #if($column.type=='图')
+                  <el-table-column prop="${column.columnName}" 
+                    header-align="center"
+                    align="center" 
+                    width="200" 
+                    label="${column.comments}">
+                    <template slot-scope="scope">
+                      <img :src="scope.row.${column.columnName}.split(',')[0]" min-width="100" height="100">
+                    </template>
+                  </el-table-column>
+                #elseif($column.type=='视')
+                  <el-table-column prop="${column.columnName}" 
+                    header-align="center"
+                    align="center"
+                    label="${column.comments}">
+                    <template slot-scope="scope">
+                      <el-button type="text" size="small" @click="download(scope.row.${column.columnName})">下载</el-button>
+                    </template>
+                  </el-table-column>
+                #elseif($column.type=='多')
+                
+                #elseif($column.columnName=='clicktime')
+                #elseif($column.columnName=='reversetime')
+                #elseif($column.columnName=='clicknum')
+                #else
+                <el-table-column
+                    prop="${column.columnName}"
+                    header-align="center"
+                    align="center"
+                    sortable
+                    width="200" 
+                    label="${column.comments}">
+                </el-table-column>
+                #end
+            #end
+            #if($sfsh=="是")
+              <el-table-column
+                  prop="sfsh"
+                  header-align="center"
+                  align="center"
+                  sortable
+                  label="审核">
+              </el-table-column>
+            #end
+            <el-table-column
+                fixed="right"
+                header-align="center"
+                align="center"
+                width="150"
+                label="操作">
+                <template slot-scope="scope">
+                #if($sfsh=="是")
+                  <el-button  type="text" icon="el-icon-edit" size="small" @click="shHandler(scope.row.id,scope.row.sfsh)">审核</el-button>
+                #end
+                <el-button v-if="isAuth('${tableName}','修改')" type="text" icon="el-icon-edit" size="small" @click="addOrUpdateHandler(scope.row.id)">修改</el-button>
+                <el-button v-if="isAuth('${tableName}','删除')" type="text" icon="el-icon-delete" size="small" @click="deleteHandler(scope.row.id)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination
+          @size-change="sizeChangeHandle"
+          @current-change="currentChangeHandle"
+          :current-page="pageIndex"
+          :page-sizes="[10, 20, 50, 100]"
+          :page-size="pageSize"
+          :total="totalPage"
+          layout="total, sizes, prev, pager, next, jumper"
+          class="pagination-content"
+        ></el-pagination>
+      </div>
+    </div>
+    <!-- 添加/修改页面  将父组件的search方法传递给子组件-->
+    <add-or-update v-else :parent="this" ref="addOrUpdate"></add-or-update>
+  </div>
+</template>
+<script>
+import AddOrUpdate from "./add-or-update";
+export default {
+  data() {
+    return {
+      searchForm: {
+        key: ""
+      },
+      dataList: [],
+      pageIndex: 1,
+      pageSize: 10,
+      totalPage: 0,
+      dataListLoading: false,
+      dataListSelections: [],
+      showFlag: false
+    };
+  },
+  mounted() {
+    this.init();
+    this.getDataList();
+  },
+  components: {
+    AddOrUpdate
+  },
+  methods: {
+    init () {
+      #foreach($column in $columns)
+        #if($column.remind=="数")
+          let url = 'remind/${tableName}/${column.columnName}/1?1=1';
+          #if($column.remindEnd)
+            url+=`&remindend=${column.remindEnd}`,
+          #end
+          #if($column.remindStart)
+            url+=`&remindstart=${column.remindStart}`,
+          #end
+          #[[this.$http({]]#
+            url: url,
+            method: "get",
+          }).then(({ data }) => {
+            if (data && data.code == 0 && data.count>0 ) {
+              #[[this.$alert(`有${data.count}条数据到达预警数量`)]]#
+            }
+          });
+        #elseif($column.remind=="日")
+          let url = 'remind/${tableName}/${column.columnName}/2?1=1';
+          #if($column.remindEnd)
+            url+=`&remindend=${column.remindEnd}`,
+          #end
+          #if($column.remindStart)
+            url+=`&remindstart=${column.remindStart}`,
+          #end
+          #[[this.$http({]]#
+            url: url,
+            method: "get",
+          }).then(({ data }) => {
+            if (data && data.code == 0 && data.count>0 ) {
+              #[[this.$alert(`有${data.count}条数据到期`)]]#
+            }
+          });
+        #end
+      #end
+    },
+    search() {
+      this.pageIndex = 1;
+      this.getDataList();
+    },
+    // 获取数据列表
+    getDataList() {
+      this.dataListLoading = true;
+      #[[this.$http({]]#
+        url: "${tableName}/page",
+        method: "get",
+        params: {
+          page: this.pageIndex,
+          limit: this.pageSize,
+          sort: 'id',
+          #foreach($column in $columns)
+            #if($column.queryFlag == "是")
+                ${column.columnName} : this.searchForm.${column.columnName},
+            #end
+          #end
+        }
+      }).then(({ data }) => {
+        if (data && data.code === 0) {
+          this.dataList = data.data.list;
+          this.totalPage = data.data.total;
+        } else {
+          this.dataList = [];
+          this.totalPage = 0;
+        }
+        this.dataListLoading = false;
+      });
+    },
+    // 每页数
+    sizeChangeHandle(val) {
+      this.pageSize = val;
+      this.pageIndex = 1;
+      this.getDataList();
+    },
+    // 当前页
+    currentChangeHandle(val) {
+      this.pageIndex = val;
+      this.getDataList();
+    },
+    // 多选
+    selectionChangeHandler(val) {
+      this.dataListSelections = val;
+    },
+    // 添加/修改
+    addOrUpdateHandler(id) {
+      this.showFlag = true;
+      #[[this.$nextTick(() => {]]#
+        #[[this.$refs.addOrUpdate.init(id);]]#
+      });
+    },
+    // 审核
+    shHandler(id,sfsh){
+      if(sfsh=="是"){
+        sfsh = '否'
+      }else{
+        sfsh = '是'
+      }
+      #[[this.$confirm(`确定操作?`, "提示", {]]#
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        #[[this.$http({]]#
+          url: "sh/${tableName}",
+          method: "post",
+          data: {
+            id:id,
+            sfsh:sfsh
+          }
+        }).then(({ data }) => {
+          if (data && data.code === 0) {
+            #[[this.$message({]]#
+              message: "操作成功",
+              type: "success",
+              duration: 1500,
+              onClose: () => {
+                this.getDataList();
+              }
+            });
+          } else {
+            #[[this.$message.error(data.msg);]]#
+          }
+        });
+      });
+    },
+    // 下载
+    download(file){
+      window.open(`#[[${file}]]#`)
+    },
+    // 删除
+    deleteHandler(id) {
+      var ids = id
+        ? [Number(id)]
+        : this.dataListSelections.map(item => {
+            return Number(item.id);
+          });
+      #[[this.$confirm(`确定进行[${id ? "删除" : "批量删除"}]操作?`, "提示", {]]#
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        #[[this.$http({]]#
+          url: "${tableName}/delete",
+          method: "post",
+          data: ids
+        }).then(({ data }) => {
+          if (data && data.code === 0) {
+            #[[this.$message({]]#
+              message: "操作成功",
+              type: "success",
+              duration: 1500,
+              onClose: () => {
+                this.search();
+              }
+            });
+          } else {
+            #[[this.$message.error(data.msg);]]#
+          }
+        });
+      });
+    }
+  }
+};
+</script>
+<style lang="scss" scoped>
+</style>

@@ -1,0 +1,132 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.reg {
+    width: 100%;
+    height: 100%;
+    background: url("../img/20.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+
+.login {
+    width: 100%;
+    height: 100%;
+    background: url("../img/20.jpg") no-repeat;
+    background-size: 100% 100%;
+}
+
+.login img, .reg img {
+    width: auto;
+}
+
+.login form, .reg form {
+    position: fixed;
+    top: 15%;
+    right: 140px;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 10;
+    background: #fff;
+}
+
+.msg-warn {
+    position: relative;
+    background: #fef4e5;
+    color: #666;
+    display: inline-block;
+    border: 1px solid #f6c090;
+    padding: 3px 31px 3px 31px;
+    line-height: 15px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.login form {
+    top: 18%;
+    border: 1px solid #dbdbdb;
+    width: 440px;
+    height: 350px;
+}
+
+.reg form {
+    width: 480px;
+    height: 490px;
+    background: #fff;
+}
+
+.reg form h1, .login form h1 {
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 20px;
+}
+
+.reg form p, .login form p {
+    margin-top: 15px;
+}
+
+.reg form a.off, .login form a.off {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.reg form input, .login form input {
+    width: 280px;
+    height: 40px;
+    border-radius: 3px;
+}
+
+.reg form input[type="text"], .login form input[type="text"] {
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.reg form input[type="password"], .login form input[type="password"] {
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.reg input[type="submit"], .login input[type="submit"] {
+    width: 280px;
+    background: #C10000;
+    font-size: 20px;
+    border: none;
+    color: #fff;
+}
+
+div.reg form input.code {
+    width: 150px;
+}
+
+div.reg form p.txtL {
+    text-align: left;
+}
+
+div.reg form p.txtL img {
+    width: 97px;
+    height: 37px;
+    vertical-align: middle;
+}
+
+div.reg form p.txtL a {
+    color: #c10000;
+}
+
+.reg form p.txt, .login form p.txt {
+    width: 280px;
+    margin: 10px auto 0;
+    text-align: right;
+}
+
+.reg p.txt a, .login p.txt a, {
+    color: #666;
+    text-decoration: underline;
+}
+
+div.login form p.txt a {
+    margin-left: 20px;
+    cursor: pointer;
+}

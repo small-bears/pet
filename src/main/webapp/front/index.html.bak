@@ -1,0 +1,121 @@
+<!-- 首页 -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>首页</title>
+		<link rel="stylesheet" href="./layui/css/layui.css">
+		<link rel="stylesheet" href="./xznstatic/css/common.css"/>
+		<link rel="stylesheet" href="./xznstatic/css/style.css"/>
+	</head>
+	<body scrolling="no" style="overflow-y: hidden;overflow-x: hidden;">
+		<!-- start 顶部导航栏 -->
+		<div id="header">
+		    <div class="top">
+		    	<div class="logo" style="font-size: 20px;top: 32px;color: #fff;font-weight: bold;margin-left: -200px;width: 240px;" v-text="projectName"></div>
+				<div class="nav">
+					<ul>
+						<li class='current'><a href="javascript:navPage('./pages/home/home.html')" class="menumain">首页</a></li>
+						<li v-for="(item,index) in indexNav" v-bind:key="index"><a :href="'javascript:navPage(\''+item.url+'\')'" class="menumain" style="cursor: pointer;">{{item.name}}</a></li>
+						<li><a href="javascript:centerPage();" class="menumain">我的</a></li>
+						<li><a :href="'javascript:window.location.href=\''+adminurl+'\''" target="_blank" class="menumain" style="cursor: pointer;">跳转到后台</a></li>
+						<li v-if="cartFlag"><a href="javascript:navPage('./pages/cart/list.html')" class="menumain"><i class="layui-icon" style="font-size: 24px;">&#xe657;</i>购物车</a></li>
+						<li v-if="chatFlag"><a href="javascript:chatTap()" class="menumain"><i class="layui-icon" style="font-size: 24px;">&#xe677;</i>客服</a></li>
+					</ul>
+				</div>
+		    </div>
+		</div>
+		<!-- end 顶部导航栏 -->
+
+		<iframe src="./pages/home/home.html" id="iframe" frameborder="0" scrolling="auto" onload="changeFrameHeight()"></iframe>
+
+		<script src="./xznstatic/js/jquery-1.11.3.min.js"></script>
+		<script src="./layui/layui.js"></script>
+		<script src="./js/vue.js"></script>
+		<script src="./js/config.js"></script>
+
+		<script>
+			var vue = new Vue({
+				el: '#header',
+				data: {
+					indexNav: indexNav,
+					cartFlag: cartFlag,
+					adminurl: adminurl,
+					chatFlag: chatFlag,
+					projectName: projectName
+				},
+				mounted: function() {
+					this.bindClickOnLi();
+				},
+				methods: {
+					jump(url) {
+						jump(url)
+					},
+					bindClickOnLi() {
+						let list = document.getElementsByTagName("li");
+						for(var i = 0;i<list.length;i++){
+							list[i].onclick = function(){
+								$(this).addClass("current").siblings().removeClass("current");
+							}
+						}
+					}
+				}
+			});
+
+			layui.use(['element','layer'], function() {
+				var element = layui.element;
+				var layer = layui.layer;
+			});
+			
+			function chatTap(){
+				var userTable = localStorage.getItem('userTable');
+				if (userTable) {
+					layui.layer.open({
+						type: 2,
+						title: '客服聊天',
+						area: ['600px', '600px'],
+						content: './pages/chat/chat.html'
+					});
+				} else {
+					window.location.href = './pages/login/login.html'
+				}
+			}
+			
+			// 导航栏跳转
+			function navPage(url) {
+				localStorage.setItem('iframeUrl', url);
+				document.getElementById('iframe').src = url;
+			}
+
+			// 跳转到个人中心也
+			function centerPage() {
+				var userTable = localStorage.getItem('userTable');
+				if (userTable) {
+					localStorage.setItem('iframeUrl', './pages/' + userTable + '/center.html');
+					document.getElementById('iframe').src = './pages/' + userTable + '/center.html';
+				} else {
+					window.location.href = './pages/login/login.html'
+				}
+			}
+
+			var iframeUrl = localStorage.getItem('iframeUrl');
+			document.getElementById('iframe').src = iframeUrl;
+
+			changeFrameHeight();
+
+			//  窗口变化时候iframe自适应
+			function changeFrameHeight() {
+				var header = document.getElementById('header').scrollHeight;
+				var ifm = document.getElementById("iframe");
+				ifm.height = document.documentElement.clientHeight - header;
+				ifm.width = document.documentElement.clientWidth;
+			}
+
+			// reasize 事件 窗口大小变化后执行的方法
+			window.onresize = function() {
+				changeFrameHeight();
+			}
+		</script>
+	</body>
+</html>

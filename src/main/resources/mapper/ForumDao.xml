@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.ForumDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.ForumEntity" id="forumMap">
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="parentid" column="parentid"/>
+        <result property="userid" column="userid"/>
+        <result property="username" column="username"/>
+        <result property="isdone" column="isdone"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.ForumVO" >
+		SELECT * FROM forum  forum         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.ForumVO" >
+		SELECT  forum.* FROM forum  forum
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.ForumView" >
+
+		SELECT  forum.* FROM forum  forum 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.ForumView" >
+		SELECT * FROM forum  forum <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	
+</mapper>

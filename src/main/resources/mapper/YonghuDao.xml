@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.YonghuDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.entity.YonghuEntity" id="yonghuMap">
+        <result property="yonghuming" column="yonghuming"/>
+        <result property="mima" column="mima"/>
+        <result property="xingming" column="xingming"/>
+        <result property="xingbie" column="xingbie"/>
+        <result property="touxiang" column="touxiang"/>
+        <result property="shouji" column="shouji"/>
+        <result property="money" column="money"/>
+    </resultMap>
+
+	<select id="selectListVO"
+		resultType="com.entity.vo.YonghuVO" >
+		SELECT * FROM yonghu  yonghu         
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectVO"
+		resultType="com.entity.vo.YonghuVO" >
+		SELECT  yonghu.* FROM yonghu  yonghu
+ 		<where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+
+    <select id="selectListView"
+		resultType="com.entity.view.YonghuView" >
+
+		SELECT  yonghu.* FROM yonghu  yonghu 	        
+        <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	<select id="selectView"
+		resultType="com.entity.view.YonghuView" >
+		SELECT * FROM yonghu  yonghu <where> 1=1 ${ew.sqlSegment}</where>
+	</select>
+	
+	
+</mapper>

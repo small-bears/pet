@@ -1,0 +1,6 @@
+const menu = {
+    list() {
+        return ${roleMenus}
+    }
+}
+export default menu;

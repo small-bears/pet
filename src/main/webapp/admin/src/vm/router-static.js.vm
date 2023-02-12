@@ -1,0 +1,43 @@
+import Vue from 'vue';
+//配置路由
+import VueRouter from 'vue-router'
+Vue.use(VueRouter);
+//1.创建组件
+import Index from '@/views/index'
+import Home from '@/views/home'
+import Login from '@/views/login'
+import NotFound from '@/views/404'
+#foreach($tableName in $backMenuTables)
+    import ${tableName} from '@/views/modules/${tableName}/list'
+#end
+
+//2.配置路由   注意：名字
+const routes = [
+    {
+        path: '/index', name:'index', component: Index, children: [{
+            // 这里不设置值，是把main作为默认页面
+            path: '/',
+            name: 'home',
+            component: Home
+        }
+        #foreach($tableName in $backMenuTables)
+            ,{
+                path: '/${tableName}',
+                name: '${tableName}',
+                component: ${tableName}
+            } 
+        #end
+        ]
+    },
+    { path: '/login', name:'login', component: Login },
+    { path: '/', redirect: '/index/' },      /*默认跳转路由*/
+    { path: '*', component: NotFound }
+]
+//3.实例化VueRouter  注意：名字
+const router = new VueRouter({
+    mode: 'hash',   /*hash模式改为history*/
+    routes // （缩写）相当于 routes: routes
+})
+
+export default router;
+

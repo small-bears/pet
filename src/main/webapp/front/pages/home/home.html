@@ -1,0 +1,544 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+<title>首页</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="author" content="order by mobanxiu.cn" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="../../layui/css/layui.css">
+<link href="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/css/swiper.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../xznstatic/css/common.css"/>
+<link rel="stylesheet" href="../../xznstatic/css/style.css"/>
+<script src="../../xznstatic/js/jquery-1.11.3.min.js"></script>
+<script src="../../xznstatic/js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<style>
+	html::after {
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		content: '';
+		display: block;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+			}
+	#test1 {
+		overflow: hidden;
+	}
+	#test1 .layui-carousel-ind li {
+		width: 20px;
+		height: 12px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 6px;
+		background-color: #f7f7f7;
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+	#test1 .layui-carousel-ind li.layui-this {
+		width: 30px;
+		height: 12px;
+		border-width: 0;
+		border-style: solid;
+		border-color: rgba(0,0,0,.3);
+		border-radius: 8px;
+		background-color: rgba(250, 255, 114, 1);
+		box-shadow: 0 0 6px rgba(255,0,0,.8);
+	}
+
+	.recommend {
+	  padding: 10px 0;
+	  display: flex;
+	  justify-content: center;
+	  background-repeat: no-repeat;
+	  background-position: center center;
+	  background-size: cover;
+	}
+
+	.recommend .box {
+	    width: 1014px;
+	}
+
+	.recommend .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.recommend .box .title span {
+		padding: 0 10px;
+		line-height: 1.4;
+	}
+
+	.recommend .box .list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+      	.index-pv1 .box .list .list-item {
+		flex: 0 0 33%;
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .list .list-item-body {
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 5px;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+
+	.recommend .box .list img {
+		width: 100%;
+		height: 100px;
+		display: block;
+		margin: 0 auto;
+    object-fit: cover;
+    max-width: 100%;
+	}
+
+	.recommend .box .list .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		text-align: center;
+		box-sizing: border-box;
+	}
+
+	.recommend .box .list .list-item3 {
+		flex: 0 0 33.33%;
+	}
+
+	.recommend .box .list .list-item5 {
+		flex: 0 0 20%;
+	}
+
+	.news {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+		width: 100%;
+	}
+
+	.news .box {
+	    width: 1014px;
+	}
+
+	.news .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.news .box .title span {
+		padding: 0 10px;
+		line-height: 1.4;
+	}
+
+	.news .box .list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+      	.index-pv2 .box .list .list-item {
+		flex: 0 0 50%;
+		padding: 0 10px;
+		box-sizing: border-box;
+	}
+
+	.news .box .list .list-item .list-item-body {
+		border: 1px solid rgba(0, 0, 0, 3);
+		padding: 10px;
+		box-sizing: border-box;
+		display: flex;
+		cursor: pointer;
+	}
+
+	.news .box .list .list-item .list-item-body img {
+		width: 120px;
+		height: 100%;
+		display: block;
+		margin: 0 auto;
+    object-fit: cover;
+    max-width: 100%;
+	}
+
+	.news .box .list .list-item .list-item-body .item-info {
+		flex: 1;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		padding-left: 10px;
+		box-sizing: border-box;
+	}
+
+	.news .box .list .list-item .list-item-body .item-info .name {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		box-sizing: border-box;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	.news .box .list .list-item .list-item-body .item-info .time {
+		padding-top: 5px;
+		color: red;
+		font-size: 14px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+	}
+
+	.news .box .list .list-item1 {
+		flex: 0 0 100%;
+	}
+
+	.news .box .list .list-item3 {
+		flex: 0 0 33.33%;
+	}
+
+	.lists {
+		padding: 10px 0;
+		display: flex;
+		justify-content: center;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.lists .box {
+	    width: 1014px;
+	    overflow: hidden;
+	}
+
+	.lists .box .title {
+		padding: 10px 5px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.lists .box .title span {
+		padding: 0 10px;
+		line-height: 1.4;
+	}
+
+	.lists .box .swiper-slide {
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+
+	.lists .box .swiper-slide .img-box {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.lists .box .swiper-slide .img-box img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+    max-width: 100%;
+	}
+
+            	.index-pv3 .box .list .list-item {
+  		flex: 0 0 ${var3}%;
+  		padding: 0 10px;
+  		box-sizing: border-box;
+  	}
+
+	.index-pv1 .animation-box:hover {
+		transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.1) rotate(0deg) skew(0deg, 0deg);
+		transition: all 0.4s;
+	}
+  .index-pv2 .animation-box:hover {
+  	transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.0) rotate(0deg) skew(0deg, 0deg);
+  	transition: all 0.3s;
+  }
+  .index-pv3 .animation-box:hover {
+  	transform: perspective(1000px) translate3d(0px, 0px, 0px) scale(1.3) rotate(0deg) skew(-1deg, 0deg);
+  	transition: all 0.3s;
+  }
+</style>
+<body>
+  <div id="app">
+    <div class="banner">
+		<div class="layui-carousel" id="test1" :style='{"boxShadow":"0 0px 0px #fff143","margin":"0 auto","borderColor":"rgba(0,0,0,.3)","borderRadius":"0px","borderWidth":"0","width":"100%","borderStyle":"solid"}'>
+		  <div carousel-item>
+			<div v-for="(item,index) in swiperList" :key="index">
+				<img style="width: 100%;height: 100%;object-fit:cover;" :src="item.img" />
+			</div>
+		  </div>
+		</div>
+      <!-- <div class="bd">
+        <ul>
+          <li v-for="(item,index) in swiperList" v-bind:key="index"><img style="width: 1920px;height: 492px;" :src="item.img" /></li>
+        </ul>
+        <div class="hd">
+          <ul>
+            <li v-for="(item,index) in swiperList" v-bind:key="index"></li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+
+    <div id="content">
+	<!-- 商品推荐 -->
+	<!-- 样式一 -->
+	<div class="recommend index-pv1" :style='{"padding":"10px  10px 0","boxShadow":"0 0 0px ","margin":"0px 0px ","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(252, 252, 252, 1)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+	  <div class="box" style='width:80%'>
+	    <div class="title" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px ","margin":"10px 0 10px 0","borderColor":"rgba(115, 115, 185, 1)","backgroundColor":"rgba(234, 224, 224, 0.43)","color":"rgba(123, 104, 238, 1)","borderRadius":"2px","alignItems":"flex-start","borderWidth":"0px 30px 0px 0px","fontSize":"20px","borderStyle":"solid"}'>
+	      <span>Recommend</span><span>宠物用品推荐</span>
+	    </div>
+	    <div class="list">
+	      <div v-for="(item,index) in chongwuyongpinRecommend" :key="index" @click="jump('../chongwuyongpin/detail.html?id='+item.id)" class="list-item" :class="3=='3'?'list-item3':3=='5'?'list-item5':''">
+	        <div class="list-item-body animation-box" :style='{"padding":"8px","boxShadow":"0 0 0px ","margin":"2px 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+																												<img :style='{"boxShadow":"8px 2px 6px #A9A9A9\t","borderColor":"rgba(255, 255, 255, 0.3)","borderRadius":"10px 10px 16px 10px","borderWidth":"0","width":"100%","borderStyle":"solid","height":"300px"}' :src="item.tupian?item.tupian.split(',')[0]:''" alt="" />
+																																																																																				<div v-if='true' :style='{"isshow":true,"padding":"0","margin":"10px 0 0 0","backgroundColor":"rgba(255, 255, 255, 0.2)","color":"rgba(70, 130, 180, 1)","borderRadius":"0 0 6px 6px","textAlign":"center","fontSize":"18px"}' class="name">{{item.shangpinmingcheng}}</div>
+																																																																																									        </div>
+	      </div>
+	    </div>
+	    <div class="clear"></div>
+	    <div style="text-align: center;">
+    <button @click="jump('../chongwuyongpin/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(227, 249, 253, 1)","color":"rgba(14, 14, 14, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"16px","borderStyle":"solid","height":"34px"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0px 0 0 3px","fontSize":"16px","color":"rgba(33, 31, 31, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- 宠物资讯 -->
+	<!-- 样式二 -->
+	<div class="news index-pv2" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px ","margin":"0px 0 0 0","borderColor":"rgba(0, 0, 0, 0)","backgroundColor":"rgba(240, 128, 128, 1)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+	  <div class="box" style='width:80%'>
+	    <div class="title" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px ","margin":"0px 0 10px 0","borderColor":"rgba(123, 104, 238, 1)","backgroundColor":"rgba(255, 255, 255, 0.78)","color":"rgba(123, 104, 238, 1)","borderRadius":"2px","alignItems":"flex-start","borderWidth":"0px 30px 0px  0px","fontSize":"20px","borderStyle":"solid"}'>
+	      <span>HOME NEWS</span><span>宠物资讯</span>
+	    </div>
+	    <div class="list">
+	      <div v-for="(item,index) in newsList" :key="index" class="list-item" @click="jump('../news/detail.html?id='+item.id)" :class="2=='1'?'list-item1':2=='3'?'list-item3':''">
+	        <div class="list-item-body animation-box" :style='{"padding":"6px","boxShadow":"0 0 0px","margin":"0 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}'>
+			  <img :style='{"boxShadow":"6px 1px 6px #88ada6","borderColor":"rgba(0,0,0,.3)","borderRadius":"100%","borderWidth":"0","width":"190px","borderStyle":"solid","height":"200px"}' :src="item.picture" alt="" />
+	          <div class="item-info">
+				<div v-if='true' :style='{"isshow":true,"padding":"0","margin":"5px 0","backgroundColor":"rgba(0,0,0,0)","color":"red","borderRadius":"0","textAlign":"left","fontSize":"20px"}' class="name">{{item.title}}</div>
+				<div :style='{"padding":"0","margin":"0","backgroundColor":"rgba(0,0,0,0)","color":"rgba(37, 34, 34, 1)","borderRadius":"0","textAlign":"right","fontSize":"12px"}' class="time">{{item.addtime}}</div>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	    <div class="clear"></div>
+	    <div style="text-align: center;">
+		<button @click="jump('../news/list.html')" style="display: block;cursor: pointer;" type="button" :style='{"padding":"0 15px","boxShadow":"0 0 6px rgba(255,0,0,0)","margin":"4px auto","borderColor":"#ccc","backgroundColor":"rgba(227, 249, 253, 1)","color":"rgba(14, 14, 14, 1)","borderRadius":"6px","borderWidth":"0","width":"auto","fontSize":"16px","borderStyle":"solid","height":"34px"}'>查看更多<i v-if="true" :style='{"isshow":true,"padding":"0px 0 0 3px","fontSize":"16px","color":"rgba(33, 31, 31, 1)"}' class="layui-icon layui-icon-next"></i></el-button>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- 特价商品展示 -->
+	<!-- 样式三 -->
+	<div class="lists index-pv3" :style='{"padding":"10px 0 10px 0","boxShadow":"0 0 0px","margin":"0px 0 0 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"rgba(255, 255, 255, 1)","borderRadius":"0","borderWidth":"0","borderStyle":"solid"}'>
+	  <div class="box" style='width:80%'>
+	    <div class="title" :style='{"isshow":true,"padding":"10px 0 10px 0","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"10px 0 10px 0","borderColor":"rgba(123, 104, 238, 1)","backgroundColor":"#f7f7f7","color":"rgba(123, 104, 238, 1)","borderRadius":"2px","alignItems":"flex-start","borderWidth":"0px 30px 0px 0px","fontSize":"20px","borderStyle":"solid"}'>
+	      <span>DATA SHOW</span><span>宠物领养展示</span>
+	    </div>
+	    <div class="list">
+			<div class="swiper-container" id="listschongwulingyang">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide animation-box" :style='{"padding":"6px","boxShadow":"0 0 0px rgba(255,0,0,.8)","margin":"0 0 10px 0","borderColor":"rgba(0,0,0,.3)","backgroundColor":"#fff","borderRadius":"4px","borderWidth":"0","borderStyle":"solid"}' v-for="(item,index) in chongwulingyangList" :key="index" @click="jump('../chongwulingyang/detail.html?id='+item.id)">
+						<div class="img-box">
+																																																	<img :style='{"boxShadow":"0 0 6px rgba(255,0,0,.8)","borderColor":"rgba(0,0,0,.3)","borderRadius":"2px","borderWidth":"0","width":"100%","borderStyle":"solid","height":"250px"}' :src="item.tupian?item.tupian.split(',')[0]:''" alt="" />
+																																																																																																																																				</div>
+																		<div v-if='true' :style='{"isshow":true,"padding":"0","margin":"5px 0","backgroundColor":"rgba(0, 0, 0, 0)","color":"rgba(123, 104, 238, 1)","borderRadius":"0 0 6px 6px","textAlign":"center","fontSize":"18px"}' class="name">{{item.chongwumingcheng}}</div>
+																																																																																																																																									</div>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+				<!-- 如果需要导航按钮 -->
+				<div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div>
+			</div>
+	    </div>
+	  </div>
+	</div>
+
+    </div>
+  </div>
+
+  <script src="../../layui/layui.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+  <script src="../../js/vue.js"></script>
+  <script src="../../js/config.js"></script>
+  <script src="../../modules/config.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script type="text/javascript">
+    var vue = new Vue({
+      el: '#app',
+      data: {
+        chongwuyongpinRecommend: [],
+
+        chongwulingyangList: [],
+        swiperList: [],
+        // 宠物资讯
+        newsList: [],
+        leftNewsList: [],
+        rightNewsList: []
+      },
+      filters: {
+        newsDesc: function(val) {
+          if (val) {
+            val = val.replace(/<[^<>]+>/g, '').replace(/undefined/g, '');
+            if (val.length > 60) {
+              val = val.substring(0, 60);
+            }
+
+            return val;
+          }
+          return '';
+        }
+      },
+      methods: {
+        jump(url) {
+          jump(url)
+        }
+      }
+    });
+
+    layui.use(['layer', 'form', 'element', 'carousel', 'http', 'jquery'], function() {
+      var layer = layui.layer;
+      var element = layui.element;
+      var form = layui.form;
+      var carousel = layui.carousel;
+      var http = layui.http;
+      var jquery = layui.jquery;
+
+      // 获取轮播图 数据
+      http.request('config/list', 'get', {
+        page: 1,
+        limit: 5
+      }, function(res) {
+        if (res.data.list.length > 0) {
+          let swiperList = [];
+          res.data.list.forEach(element => {
+            if (element.value != null) {
+              swiperList.push({
+                img: element.value
+              });
+            }
+          });
+
+		  vue.swiperList = swiperList;
+
+		  vue.$nextTick(() => {
+		    carousel.render({
+		    	elem: '#test1',
+				width: '100%',
+		    	height: '430px',
+		    	arrow: 'hover',
+		    	anim: 'default',
+		    	autoplay: 'true',
+		    	interval: '3000',
+		    	indicator: 'inside'
+		    });
+
+		  })
+
+          // vue.$nextTick(()=>{
+          //   window.xznSlide();
+          // });
+        }
+      });
+
+      // 宠物资讯
+      http.request('news/list', 'get', {
+        page: 1,
+	limit: 2 * 2,
+        order: 'desc'
+      }, function(res) {
+        var newsList = res.data.list;
+        vue.newsList = newsList;
+        if (newsList.length > 0 && newsList.length <= 2) {
+          vue.leftNewsList = res.data.list
+        } else {
+          var leftNewsList = []
+          for (let i = 0; i <= 2; i++) {
+            leftNewsList.push(newsList[i]);
+          }
+          vue.leftNewsList = leftNewsList
+        }
+        if (newsList.length > 2 && newsList.length <= 8) {
+          var rightNewsList = []
+          for (let i = 3; i <= newsList.length; i++) {
+            rightNewsList.push(newsList[i]);
+          }
+          vue.rightNewsList = rightNewsList
+        }
+
+		let flag = 2;
+		let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+		options.pagination = {el:'null'}
+		if(flag == 3) {
+			vue.$nextTick(() => {
+                                                                                                                                                                                                                                                                				new Swiper ('#newsnews', options)
+                                                                                			})
+		}
+      });
+
+      // 获取推荐信息
+      http.request(`chongwuyongpin/autoSort`, 'get', {
+        page: 1,
+	limit: 3 * 2
+      }, function(res) {
+        vue.chongwuyongpinRecommend = res.data.list
+		let flag = 1;
+		let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+		options.pagination = {el:'null'}
+		if(flag == 3) {
+			vue.$nextTick(() => {
+                                                				new Swiper ('#recommendchongwuyongpin', options)
+                                                                                                                                                                                                                                                                                                			})
+		}
+      });
+
+      http.request(`chongwulingyang/list`, 'get', {
+        page: 1,
+      }, function(res) {
+        vue.chongwulingyangList = res.data.list;
+		let flag = 3;
+		let options = {"navigation":{"nextEl":".swiper-button-next","prevEl":".swiper-button-prev"},"slidesPerView":5,"loop":true,"spaceBetween":20,"autoplay":{"delay":3000,"disableOnInteraction":false}}
+		options.pagination = {el:'null'}
+		if(flag == 3) {
+			vue.$nextTick(() => {
+                                                                                				new Swiper ('#listschongwulingyang', options)
+                                                                                                                                                                                                                                                                			})
+		}
+        // vue.$nextTick(()=>{
+        //   window.xznSlide();
+        // });
+      });
+  });
+
+  window.xznSlide = function() {
+    // jQuery(".banner").slide({mainCell:".bd ul",autoPlay:true,interTime:5000});
+    jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_piclist ul",effect:"leftLoop", delayTime:200, autoPlay:true,triggerTime:0});
+    jQuery("#ifocus").slide({ titCell:"#ifocus_btn li", mainCell:"#ifocus_tx ul",delayTime:0, autoPlay:true});
+    jQuery(".product_list").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5,trigger:"click",interTime:4000});
+  };
+</script>
+<script src="../../xznstatic/js/index.js"></script>
+</body>
+</html>

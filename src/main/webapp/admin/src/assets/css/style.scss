@@ -1,0 +1,47 @@
+.form-content {
+background: #ffffff;
+padding: 10px 10px 0 10px;
+}
+.table-content {
+background: #ffffff;
+padding: 0 10px;
+}
+.pagination-content {
+margin-top: 10px;
+padding-bottom: 10px;
+text-align: right;
+}
+.detail-form-content{
+background: #ffffff;
+padding: 10px;
+.el-input{
+    min-width: 200px;
+    max-width: 600px;
+}
+}
+.bg {
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+}
+.login-form {
+position: absolute;
+top: 0;
+right: 0;
+width: 350px;
+height: 100%;
+background: #ffffff;
+padding: 0 60px;
+font-size: 18px;
+font-weight: bold;
+}
+.h1 {
+margin-top: 80px;
+font-size: 20px;
+font-weight: bold;
+}
+.btn-login {
+margin-top: 50px;
+width: 100%;
+}

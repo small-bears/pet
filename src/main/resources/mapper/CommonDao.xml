@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.CommonDao">
+	<select id="getOption" resultType="String" >
+		SELECT distinct ${column} FROM ${table} 
+			where ${column} is not null and ${column} !=''
+			<if test = "level != null"> 
+			and level=#{level} 
+			</if>
+			<if test = "parent != null"> 
+			and parent=#{parent} 
+			</if>
+	</select>
+	
+	<select id="getFollowByOption" resultType="map" >
+		SELECT * FROM ${table} where ${column}=#{columnValue}
+	</select>
+	
+	<update id="sh">
+		UPDATE ${table} set sfsh=#{sfsh} where id=#{id}
+	</update>
+	
+	<select id="remindCount" resultType="int" >
+		SELECT count(1) FROM ${table} 
+			where 1=1 
+			<if test = "type == 1 ">
+				<if test = " remindstart != null ">
+				     and ${column} &gt;= #{remindstart}
+				</if>
+				<if test = " remindend != null ">
+				     and ${column} &lt;= #{remindend}
+				</if>
+			</if>
+						<if test = "type == 2 ">
+				<if test = " remindstart != null ">
+				     and ${column} &gt;= str_to_date(#{remindstart},'%Y-%m-%d')
+				</if>
+				<if test = " remindend != null ">
+				     and ${column} &lt;= str_to_date(#{remindend},'%Y-%m-%d')
+				</if>
+			</if>
+							</select>
+	
+	<select id="selectCal" resultType="map" >
+		SELECT sum(${column}) sum,max(${column}) max,min(${column}) min,avg(${column}) avg FROM ${table}
+	</select>
+	
+	<select id="selectGroup" resultType="map" >
+		SELECT ${column} , count(1) total FROM ${table} group by ${column}
+	</select>
+	
+	<select id="selectValue" resultType="map" >
+		SELECT ${xColumn}, sum(${yColumn}) total FROM ${table} group by ${xColumn}
+	</select>
+</mapper>
