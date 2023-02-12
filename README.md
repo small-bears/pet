@@ -7,8 +7,8 @@
 
       前台: 首页、宠物用品、宠物领养、宠物挂失、论坛信息、宠物资讯、个人中心、后台管理、购物车、客服
 
-      <h2 id="uee142c35" class="ne-p"><span class="ne-text">视频演示</span></h2>
-            <p style="text-align: center;"><strong><span class="ne-text">建议点击这个</span><a style="color: #ff0000;" href="https://www.bilibili.com/video/BV1AM411F7zf/?spm_id_from=333.999.0.0"">“链接”</a>查看高清视频</strong></p>
+<h2 id="uee142c35" class="ne-p"><span class="ne-text">视频演示</span></h2>
+<p style="text-align: center;"><strong><span class="ne-text">建议点击这个</span><a style="color: #ff0000;" href="https://www.bilibili.com/video/BV1AM411F7zf/?spm_id_from=333.999.0.0">“链接”</a>查看高清视频</strong></p>
 
 ## 二、 运行环境
       开发语言：Java
