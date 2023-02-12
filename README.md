@@ -1,30 +1,30 @@
 
 **基于SSM框架的宠物领养系统**
 ## 一、 项目介绍
-管理员：首页、个人中心、宠物分类管理、宠物用品、宠物商店管理、宠物领养管理、用户管理、宠物寄存管理、宠物挂失管理、论坛管理、管理员管理、系统管理、订单管理
+      管理员：首页、个人中心、宠物分类管理、宠物用品、宠物商店管理、宠物领养管理、用户管理、宠物寄存管理、宠物挂失管理、论坛管理、管理员管理、系统管理、订单管理
 
-用户： 首页、个人中心、宠物寄存管理、宠物挂失管理、我的收藏管理、订单管理
+      用户： 首页、个人中心、宠物寄存管理、宠物挂失管理、我的收藏管理、订单管理
 
-前台: 首页、宠物用品、宠物领养、宠物挂失、论坛信息、宠物资讯、个人中心、后台管理、购物车、客服
-<strong>项目演示地址:  </strong><a href="https://www.bilibili.com/video/BV1AM411F7zf/?spm_id_from=333.999.0.0">点击查看</a>
+      前台: 首页、宠物用品、宠物领养、宠物挂失、论坛信息、宠物资讯、个人中心、后台管理、购物车、客服
+      <strong>项目演示地址:  </strong><a href="https://www.bilibili.com/video/BV1AM411F7zf/?spm_id_from=333.999.0.0">点击查看</a>
 
 ## 二、 运行环境
-开发语言：Java
+      开发语言：Java
 
-开发工具：IDEA，Eclipse,Myeclipse都可以。推荐IDEA
+      开发工具：IDEA，Eclipse,Myeclipse都可以。推荐IDEA
 
-JDK版本：1.8
+      JDK版本：1.8
 
-数据库: MySQL5.7
+      数据库: MySQL5.7
 
-Tomcat环境：Tomcat 7.x,8.x,9.x版本均可
+      Tomcat环境：Tomcat 7.x,8.x,9.x版本均可
 
-项目管理：Maven
+      项目管理：Maven
 
 ## 三、 项目技术
-后端：SSM(Spring+SpringMVC+Mybatis)
+      后端：SSM(Spring+SpringMVC+Mybatis)
 
-前端：ElementUI+Vue
+      前端：ElementUI+Vue
 ## 四、 运行截图（点图片可放大）
 ![1](https://user-images.githubusercontent.com/124327024/218303897-159597c3-75e7-4255-8580-5ab9d2959920.png)
 ![2](https://user-images.githubusercontent.com/124327024/218303900-54b01f54-8284-41d0-b349-e9b45ab3dd93.png)
