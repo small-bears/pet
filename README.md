@@ -1,10 +1,15 @@
-# 获取地址:
 
-#### 项目获取地址：https://www.666bear.com/3427.html
+### 联系方式（微信扫一扫）:
+<img width="444" height="560" alt="2fc79856-4bde-42f0-a5ea-83281867fbbe" src="https://github.com/user-attachments/assets/3eaeeaef-8fda-4c05-9f80-9e5361650c4a" />
+
+### 计算机毕设定制（直接点击链接）：https://www.yuque.com/techninja/code/xrpvpxbu3y8fa3ey?singleDoc#
+## 一、获取地址:
+
+#### 项目获取地址：https://www.666bear.com/12259.html
 
 **博主介绍：✌全网粉丝20W+,csdn特邀作者、Java领域优质创作者、csdn/掘金/哔哩哔哩/知乎/道客/小红书等平台优质作者，计算机毕设实战导师，目前专注于大学生项目实战开发,讲解,毕业答疑辅导✌工作室接计算机毕业设计程序开发、论文代写、代码讲解、出售成品源码等毕设服务，专业靠谱~**
 
-#### 作者QQ：3289948684 微信：bysj5280 (支持修改、 部署调试、 代做接毕业设计和课程设计)
+#### 作者QQ：3289948684 微信：bysj7626 (支持修改、 部署调试、 代做接毕业设计和课程设计)
 
 #### 接网站建设、小程序、H5、APP、各种系统、样式修改等
 
@@ -13,42 +18,44 @@
 #### 有需求尽管甩过来！一条龙帮你安心过！
 
 #### 所有项目以及源代码本人均调试运行无问题 可支持远程调试运行
-
-
-**基于SSM框架的宠物领养系统**
+# hotel
+(协同过滤推荐算法+AI智能助手)基于SpringBoot的图书馆座位预约系统分为前台用户模块与后台管理员模块
 ## 一、 项目介绍
-      管理员：首页、个人中心、宠物分类管理、宠物用品、宠物商店管理、宠物领养管理、用户管理、宠物寄存管理、宠物挂失管理、论坛管理、管理员管理、系统管理、订单管理
 
-      用户： 首页、个人中心、宠物寄存管理、宠物挂失管理、我的收藏管理、订单管理
+(协同过滤推荐算法+AI智能助手)基于SpringBoot的图书馆座位预约系统分为前台用户模块与后台管理员模块，核心功能如下：
 
-      前台: 首页、宠物用品、宠物领养、宠物挂失、论坛信息、宠物资讯、个人中心、后台管理、购物车、客服
-## 二、 视频演示
+1. 前台用户模块
+基础功能：首页、图书馆（座位相关功能入口）、活动信息、社交论坛、公告信息、智能客服
+个人中心功能：修改密码、图书馆预约、取消预约、签到信息、签退信息、活动报名、活动评价、我的发布、我的收藏
+2. 后台管理员模块
+全流程管理功能：系统首页、用户管理、图书馆管理、图书馆预约管理、取消预约管理、签到信息管理、签退信息管理、活动类型管理、活动信息管理、活动报名管理、活动评价管理、举报记录管理、论坛分类管理、社交论坛管理、系统管理、个人中心
 
-<p style="text-align: center;"><strong><span class="ne-text">建议点击这个</span><a style="color: #ff0000;" href="https://www.bilibili.com/video/BV1AM411F7zf/?spm_id_from=333.999.0.0">“链接”</a>查看高清视频</strong></p>
+## 二、 视频演示（点击既可以看到）
+
+https://www.bilibili.com/video/BV1p6yYBgE5y/?spm_id_from=333.1387.list.card_archive.click&vd_source=e51e8ec2fb03314ad9fa517492a2ce94
 
 
-## 三、 运行环境
-      开发语言：Java
+## 三、项目技术
 
-      开发工具：IDEA，Eclipse,Myeclipse都可以。推荐IDEA
+后端： SpringBoot+Mybaits
 
-      JDK版本：1.8
+前端：Layui +HTML+Vue +ELementUI 
 
-      数据库: MySQL5.7
 
-      Tomcat环境：Tomcat 7.x,8.x,9.x版本均可
 
-      项目管理：Maven
+## 四、 运行环境
 
-## 四、 项目技术
-      后端：SSM(Spring+SpringMVC+Mybatis)
+开发语言：Java
 
-      前端：ElementUI+Vue
+开发工具：IDEA，Eclipse,Myeclipse都可以。推荐IDEA
+
+JDK版本：1.8
+
+数据库: MySQL8.0版本以上
+
+项目管理：Maven
 ## 五、 运行截图（点图片可放大）
-![1](https://user-images.githubusercontent.com/124327024/218303897-159597c3-75e7-4255-8580-5ab9d2959920.png)
-![2](https://user-images.githubusercontent.com/124327024/218303900-54b01f54-8284-41d0-b349-e9b45ab3dd93.png)
-![3](https://user-images.githubusercontent.com/124327024/218303905-fddb6b01-e786-4da3-807b-934b1e876199.png)
-![4](https://user-images.githubusercontent.com/124327024/218303910-69920a17-adaf-47ff-ae53-74e6cc5e067e.png)
-![6](https://user-images.githubusercontent.com/124327024/218303911-d92acf3f-10b3-4b3f-b959-0cb17a7d661b.png)
-![9](https://user-images.githubusercontent.com/124327024/218303917-78647877-fdee-4993-83d9-dec4530f7837.png)
-![11](https://user-images.githubusercontent.com/124327024/218303925-17e3db48-787d-4284-ab56-78cb057f0074.png)
+
+
+https://www.bilibili.com/video/BV1p6yYBgE5y/?spm_id_from=333.1387.list.card_archive.click&vd_source=e51e8ec2fb03314ad9fa517492a2ce94
+
